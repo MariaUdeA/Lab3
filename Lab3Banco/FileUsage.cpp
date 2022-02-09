@@ -1,8 +1,98 @@
 #include <iostream>
 #include <fstream>
-#include <istream>
-//#include <usuarios.h>
+#include <sstream>
+#include <math.h>
+#include "FileUsage.h"
+#include "usuarios.h"
+bool b[8];
+int ReadSudo(){ //listo
+    char a[32];
+    bool line[32];
+    int c=0;
+    int clave=0;
+    std::ifstream fin;
+    fin.open("ArchivoSudo.txt");
+    fin.getline(a,33);
+    for (char i:a){
+        line[c]= bool(i-48);
+        c++;
+    }
+    for (int i=0;i<32;i=i+8){
+        for (int j=0;j<8;j++)
+            b[j]=line[i+j];
+        desencriptar();
+        clave=clave+BoolaInt()*pow(10,(((32-i)/8)-1));
+    }
+    return clave;
+    /* descripcion
+     leer el archivo--> una linea
+     desencriptar linea
+     pasar a int
+     */
+}
+void readRegister(){
+    /*
+    for linea en leyendo
+    8*10 de cedula
+    cada 8, se desencripta, y se pasa a int
+    8*4 de clave
+    8*el resto de saldo
 
-void ReadSudo(){
+    */
+}
+void writeRegister(){
+    std::ofstream fout;
+    fout.open("registro.txt");
+    /*
+     for (student i:s){
+     getCedula
+     poner variable
+     transformar en array de bool
+    write in registros.txt
+    getClave
+    write in registros.txt
+    getSaldo
+    write in registros.txt
+    write \n
+}
+se usa fout<<str o algo
+     */
+    fout.close();
+}
+void encriptar(){
+    bool placeholder;
+    for (int i=0;i<8;i=i+3){
+        if ((8-i)>=3){
+        placeholder=b[i];
+        b[i]=b[i+1];
+        b[i+1]=b[i+2];
+        b[i+2]=placeholder;}
+    }
+    /*for (int i : b)
+        std::cout<<i;*/
+}
+void desencriptar(){
+    bool placeholder;
+    for (int i=0;i<8;i=i+3){
+        if ((8-i)>=3){
+        placeholder=b[i+2];
+        b[i+2]=b[i+1];
+        b[i+1]=b[i];
+        b[i]=placeholder;}
+    }
 
+}
+int BoolaInt(){
+    char num=0;
+    for (int i=0;i<8;i++){
+        num=num+b[i]*pow(2,7-i);
+    }
+    return (num-48);
+}
+void IntaBool(int a){
+    int c=7;
+    for (int i=a;c>=0;i=i/2){
+        b[c]=(i%2==0)? 0 : 1 ;
+        c--;
+    }
 }

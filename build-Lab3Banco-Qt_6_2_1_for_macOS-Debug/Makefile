@@ -169,6 +169,7 @@ DIST          = /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/spec_pre.prf 
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/qt_config.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/spec_post.prf \
+		../Lab3Banco/.qmake.stash \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/mac/sdk.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/toolchain.prf \
@@ -190,7 +191,8 @@ DIST          = /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/spec_pre.prf 
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/exceptions.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/yacc.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/lex.prf \
-		../Lab3Banco/Lab3Banco.pro usuarios.h ../Lab3Banco/FileUsage.cpp \
+		../Lab3Banco/Lab3Banco.pro FileUsage.h \
+		usuarios.h ../Lab3Banco/FileUsage.cpp \
 		../Lab3Banco/main.cpp \
 		../Lab3Banco/usuarios.cpp
 QMAKE_TARGET  = Lab3Banco
@@ -201,7 +203,7 @@ TARGET        = Lab3Banco
 EXPORT_QMAKE_MAC_SDK = macosx
 EXPORT_QMAKE_MAC_SDK_VERSION = 12.1
 EXPORT_QMAKE_XCODE_DEVELOPER_PATH = /Applications/Xcode.app/Contents/Developer
-EXPORT__QMAKE_STASH_ = 
+EXPORT__QMAKE_STASH_ = /Users/mariadelmar/Desktop/UdeA/SegundoSemestre/Info2/Labs/Lab3/build-Lab3Banco-Qt_6_2_1_for_macOS-Debug/.qmake.stash
 EXPORT_VALID_ARCHS = x86_64 arm64
 EXPORT_DEFAULT_ARCHS = x86_64
 EXPORT_ARCHS = $(filter $(EXPORT_VALID_ARCHS), $(if $(ARCHS), $(ARCHS), $(if $(EXPORT_DEFAULT_ARCHS), $(EXPORT_DEFAULT_ARCHS), $(EXPORT_VALID_ARCHS))))
@@ -327,6 +329,7 @@ Makefile: ../Lab3Banco/Lab3Banco.pro /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/m
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/qt_config.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/macx-clang/qmake.conf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/exclusive_builds.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/mac/sdk.prf \
 		/Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/toolchain.prf \
@@ -461,6 +464,7 @@ Makefile: ../Lab3Banco/Lab3Banco.pro /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/m
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/qt_config.prf:
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/macx-clang/qmake.conf:
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/exclusive_builds.prf:
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/mac/sdk.prf:
 /Users/mariadelmar/Qt/6.2.1/macos/mkspecs/features/toolchain.prf:
@@ -506,6 +510,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -530,10 +535,12 @@ compiler_clean:
 
 ####### Compile
 
-FileUsage.o: ../Lab3Banco/FileUsage.cpp 
+FileUsage.o: ../Lab3Banco/FileUsage.cpp ../Lab3Banco/usuarios.h \
+		../Lab3Banco/FileUsage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o FileUsage.o ../Lab3Banco/FileUsage.cpp
 
-main.o: ../Lab3Banco/main.cpp ../Lab3Banco/usuarios.h
+main.o: ../Lab3Banco/main.cpp ../Lab3Banco/usuarios.h \
+		../Lab3Banco/FileUsage.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Lab3Banco/main.cpp
 
 usuarios.o: ../Lab3Banco/usuarios.cpp ../Lab3Banco/usuarios.h

@@ -9,4 +9,5 @@ SOURCES += \
         usuarios.cpp
 
 HEADERS += \
+    FileUsage.h \
     usuarios.h

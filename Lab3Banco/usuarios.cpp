@@ -1,4 +1,4 @@
-#include <usuarios.h>
+#include "usuarios.h"
 #include <iostream>
 
 /*Usuarios::Usuarios()
@@ -10,10 +10,19 @@ void Usuarios::SetUsuarios(int ced,int clave,int saldo){
     Clave=clave;
     Saldo=saldo;
 }
+int Usuarios::getClave(){
+    return Clave;
+}
+int Usuarios::getCedula(){
+    return Cedula;
+}
+int Usuarios::getSaldo(){
+    return Saldo;
+}
 void Usuarios::ReadUsuarios(){
-    std::cout<<"Ingrese la cedula: "<<std::endl;
+    std::cout<<"Ingrese la cedula de 10 digitos: "<<std::endl;
     std::cin>>Cedula;
-    std::cout<<"Ingrese la clave: "<<std::endl;
+    std::cout<<"Ingrese la clave de 4 digitos: "<<std::endl;
     std::cin>>Clave;
     std::cout<<"Ingrese el saldo: "<<std::endl;
     std::cin>>Saldo;
