@@ -2,7 +2,7 @@
 #define FILEUSAGE_H
 #include "usuarios.h"
 int ReadSudo();
-void writeRegister(Usuarios s);
+void writeRegister();
 void encriptar();
 void desencriptar();
 int BoolaInt();

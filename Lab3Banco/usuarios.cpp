@@ -20,12 +20,21 @@ int Usuarios::getSaldo(){
     return Saldo;
 }
 void Usuarios::ReadUsuarios(){
-    std::cout<<"Ingrese la cedula de 10 digitos: "<<std::endl;
-    std::cin>>Cedula;
+    Cedula=1;
+    Clave=1;
+    Saldo=1;
+    std::cout<<"Ingrese la cedula de 10 digitos: "<<std::endl; //que sea mayor a cero, no incluyente
+    do{
+        std::cin>>Cedula;}
+    while(Cedula<=0);
     std::cout<<"Ingrese la clave de 4 digitos: "<<std::endl;
-    std::cin>>Clave;
+    do{
+        std::cin>>Clave;}
+    while(Clave<0);
     std::cout<<"Ingrese el saldo: "<<std::endl;
-    std::cin>>Saldo;
+    do{
+        std::cin>>Saldo;}
+    while(Saldo<0);
 }
 void Usuarios::CheckSaldo(){
     std::cout<<"El saldo del usuario es: $"<<Saldo<<std::endl;

@@ -43,17 +43,28 @@ void readRegister(){
 void writeRegister(){
     extern Usuarios s[100];
     int placeholder;
-    char digit;
+    int digit;
     std::ofstream fout;
     fout.open("registro.txt");
-    for (Usuarios i :s){
-        placeholder=i.getCedula(); //Se separa por digitos que se pasan a binario y se encriptan
-
-
-
-
+    for (int i=0;s[i].getCedula()!=0;i++){
+        placeholder=s[i].getCedula(); //Se separa por digitos que se pasan a binario y se encriptan
+        /*digit=floor(log10(placeholder)+1);
+        char* palabra=new char[digit];
+        int c=0;
+        for (int j=digit;j>0;j--){
+           *(palabra+c)=(floor(placeholder/(pow(10,j-1))))+48;
+            placeholder=placeholder-(palabra[c]-48)*pow(10,j-1);
+            c++;
+        }*/
+        //for (int j=0;j;j=j+8){}
+        fout<<placeholder;
+        placeholder=s[i].getClave();
+        //fout<<placeholder;
+        placeholder=s[i].getClave();
+        //fout<<placeholder;
+        fout<<'\n';
     }
-    /*
+    /* expplicacion
      for (student i:s){
      getCedula
      poner variable
