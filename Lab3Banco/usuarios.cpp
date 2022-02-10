@@ -1,5 +1,6 @@
 #include "usuarios.h"
 #include <iostream>
+#include "FileUsage.h"
 
 /*Usuarios::Usuarios()
 {
@@ -26,7 +27,7 @@ void Usuarios::ReadUsuarios(){
     std::cout<<"Ingrese la cedula de 10 digitos: "<<std::endl; //que sea mayor a cero, no incluyente
     do{
         std::cin>>Cedula;}
-    while(Cedula<=0);
+    while(Cedula<=0 || CedRepetida(Cedula));
     std::cout<<"Ingrese la clave de 4 digitos: "<<std::endl;
     do{
         std::cin>>Clave;}

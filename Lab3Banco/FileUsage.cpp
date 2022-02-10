@@ -5,6 +5,7 @@
 #include "FileUsage.h"
 #include "usuarios.h"
 bool b[8];
+extern Usuarios s[100];
 int ReadSudo(){ //listo
     char a[32];
     bool line[32];
@@ -23,6 +24,7 @@ int ReadSudo(){ //listo
         desencriptar();
         clave=clave+BoolaInt()*pow(10,(((32-i)/8)-1));
     }
+    fin.close();
     return clave;
     /* descripcion
      leer el archivo--> una linea
@@ -31,6 +33,8 @@ int ReadSudo(){ //listo
      */
 }
 void readRegister(){
+    std::ifstream fin;
+    fin.open("registro.txt");
     /*
     for linea en leyendo
     8*10 de cedula
@@ -39,9 +43,9 @@ void readRegister(){
     8*el resto de saldo
 
     */
+    fin.close();
 }
 void writeRegister(){ //listo
-    extern Usuarios s[100];
     int placeholder;
     int digit;
     std::ofstream fout;
@@ -152,4 +156,22 @@ void IntaBool(int a){
         b[c]=(i%2==0)? 0 : 1 ;
         c--;
     }
+}
+bool CedRepetida (int Cedu){
+    int c=0;
+    for (int i=0;s[i].getCedula()!=0;i++){
+        if (s[i].getCedula()==Cedu){
+            c++;
+        }
+    }
+    if (c>=2)
+        return true;
+    else
+        return false;
+}
+int Cedplace(int cedu){
+    int i=0;
+    while(s[i].getCedula()!=0 && cedu!=s[i].getCedula())
+        i++;
+    return i;
 }

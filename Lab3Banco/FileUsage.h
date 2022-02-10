@@ -7,5 +7,7 @@ void encriptar();
 void desencriptar();
 int BoolaInt();
 void IntaBool(int);
+bool CedRepetida(int);
+int Cedplace(int);
 
 #endif // FILEUSAGE_H
