@@ -1,7 +1,6 @@
 #include <iostream>
 #include "usuarios.h"
 #include "FileUsage.h"
-#include <math.h>
 using std::cout;
 using std::cin;
 using std::endl;
@@ -18,6 +17,7 @@ int main()
     }
     while (answer!='1' && answer !='0');
     if (answer=='1'){
+       int c=0;
        cout<<"Sesion de administrador, ingrese la contraseña sudo: "<<endl;
        cin>>password;
        if (password==ReadSudo()){
@@ -31,8 +31,10 @@ int main()
                int n;
                cout<<"Ingrese numero de usuarios a registrar: "<<endl;
                cin>>n;
-               for (int i=0;i<n;i++)
-                   s[i].ReadUsuarios();
+               for (int i=0;i<n;i++){
+                   s[c].ReadUsuarios();
+                   c++;
+               }
               }
            else if (opcion==2){
                for (int i=0;s[i].getCedula()!=0;i++)
@@ -46,6 +48,8 @@ int main()
     }
     else
            cout<<"Contraseña no correcta, inicie de nuevo."<<endl;
+    }
+    else if (answer=='2'){
     }
     writeRegister();
    return 0;
