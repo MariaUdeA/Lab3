@@ -4,9 +4,9 @@
 using std::cout;
 using std::cin;
 using std::endl;
-
+Usuarios s[100];
 int main()
 {
-    cout<<ReadSudo()<<endl;
+
     return 0;
 }

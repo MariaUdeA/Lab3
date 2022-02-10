@@ -41,8 +41,18 @@ void readRegister(){
     */
 }
 void writeRegister(){
+    extern Usuarios s[100];
+    int placeholder;
+    char digit;
     std::ofstream fout;
     fout.open("registro.txt");
+    for (Usuarios i :s){
+        placeholder=i.getCedula(); //Se separa por digitos que se pasan a binario y se encriptan
+
+
+
+
+    }
     /*
      for (student i:s){
      getCedula
