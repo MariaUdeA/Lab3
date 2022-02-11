@@ -38,14 +38,18 @@ void Usuarios::ReadUsuarios(){
     while(Saldo<0);
 }
 void Usuarios::CheckSaldo(){
-    std::cout<<"El saldo del usuario es: $"<<Saldo<<std::endl;
-    Saldo=Saldo-1000;
+    if (Saldo>=1000){
+        std::cout<<"El saldo del usuario es: $"<<Saldo<<std::endl;
+        Saldo=Saldo-1000;}
+    else
+        std::cout<<"Fondos insuficientes para realizar esta transaccion"<<std::endl;
+
 }
 void Usuarios::GetMoney(){
     int money;
     std::cout<<"Ingrese la cantidad a retirar: ";
     std::cin>>money;
-    while (money>Saldo){
+    while (money>Saldo-1000){
         std::cout<<"La cantidad que ingreso excede su saldo, ingrese la cantidad a retirar: ";
         std::cin>>money;
     }

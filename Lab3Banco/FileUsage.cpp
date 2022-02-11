@@ -101,7 +101,7 @@ void readRegister(){
     */
     fin.close();
 }
-void writeRegister(){ //listo
+void writeRegister(){
     int placeholder;
     int digit;
     std::ofstream fout;
@@ -142,7 +142,10 @@ void writeRegister(){ //listo
         }
         delete[] palabra;
         placeholder=s[i].getSaldo();
-        digit=floor(log10(placeholder)+1);
+        if (placeholder==0)
+            digit=1;
+        else
+            digit=floor(log10(placeholder)+1);
         palabra=new char[digit];
         c=0;
         for (int j=digit;j>0;j--){
@@ -212,6 +215,18 @@ void IntaBool(int a){
         b[c]=(i%2==0)? 0 : 1 ;
         c--;
     }
+}
+bool CheckCedRepetida (int Cedu){
+    int c=0;
+    for (int i=0;s[i].getCedula()!=0;i++){
+        if (s[i].getCedula()==Cedu){
+            c++;
+        }
+    }
+    if (c>=1)
+        return true;
+    else
+        return false;
 }
 bool CedRepetida (int Cedu){
     int c=0;

@@ -11,5 +11,5 @@ void IntaBool(int);
 bool CedRepetida(int);
 int Cedplace(int);
 int countUsers();
-
+bool CheckCedRepetida (int Cedu);
 #endif // FILEUSAGE_H
