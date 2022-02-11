@@ -7,6 +7,7 @@ using std::endl;
 Usuarios s[100];
 int main()
 {
+    readRegister();
     char answer;
     bool sesion=1;
     int opcion;
@@ -17,7 +18,7 @@ int main()
     }
     while (answer!='1' && answer !='0');
     if (answer=='1'){
-       int c=0;
+       int c=countUsers();
        cout<<"Sesion de administrador, ingrese la contraseña sudo: "<<endl;
        cin>>password;
        if (password==ReadSudo()){

@@ -4,7 +4,7 @@
 #include <math.h>
 #include "FileUsage.h"
 #include "usuarios.h"
-bool b[8];
+bool b[8]={0};
 extern Usuarios s[100];
 int ReadSudo(){ //listo
     char a[32];
@@ -35,6 +35,62 @@ int ReadSudo(){ //listo
 void readRegister(){
     std::ifstream fin;
     fin.open("registro.txt");
+    int c=0;
+    //int reader=0;
+    fin.seekg(0);
+    bool aid=0;
+    while (fin.good()){
+        int cedprov=0;
+        for (int i=0;i<10;i++){ //Cedula
+                for(int j=0;j<8;j++){
+                    aid=fin.get()-48;
+                    if (!fin.good())
+                        break;
+                    b[j]=aid;
+
+                }
+                if (!fin.good())
+                    break;
+                desencriptar();
+                cedprov=cedprov+BoolaInt()*pow(10,9-i);
+        }
+        if (!fin.good())
+            break;
+        int claveprov=0;
+        for (int i=0;i<4;i++){ //Clave
+                for(int j=0;j<8;j++){
+                    b[j]=fin.get()-48;
+                }
+                desencriptar();
+                claveprov=claveprov+BoolaInt()*pow(10,3-i);
+        }
+        int saldoprov=0;
+        char aid;
+        char* ssaldo=new char[100];
+        for (int i=0;ssaldo[i]!='\n';i++){ //Saldo
+                for(int j=0;j<8;j++){
+                    aid=fin.get();
+                    if (aid=='\n')
+                        break;
+                    else
+                        b[j]=aid-48;
+                }
+                if (aid=='\n'){
+                    ssaldo[i]=aid;
+                    break;}
+                desencriptar();
+                ssaldo[i]=BoolaInt()+48;
+        } 
+        int counter=0;
+        for (int i=0;ssaldo[i]!='\n';i++)
+            counter++;
+        for (int i =0;i<counter;i++){
+            saldoprov=saldoprov+(ssaldo[i]-48)*pow(10,counter-i-1);
+        }
+        delete [] ssaldo;
+        s[c].SetUsuarios(cedprov,claveprov,saldoprov);
+        c++;
+    }
     /*
     for linea en leyendo
     8*10 de cedula
@@ -174,4 +230,10 @@ int Cedplace(int cedu){
     while(s[i].getCedula()!=0 && cedu!=s[i].getCedula())
         i++;
     return i;
+}
+int countUsers(){
+    int num=0;
+    for (int i=0;s[i].getCedula()!=0;i++)
+        num++;
+    return num;
 }
