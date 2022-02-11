@@ -12,6 +12,7 @@ int main()
     bool sesion=1;
     int opcion;
     int password;
+    int intentos=1;
     do{
     cout<<"Como desea ingresar: \n1. Administrador\n2.Usuario"<<endl;
     cin>>answer;
@@ -20,7 +21,7 @@ int main()
     if (answer==1){
        int c=countUsers();
        cout<<"Sesion de administrador, ingrese la contraseña sudo: "<<endl;
-       cin>>password;
+       cin>>password;       
        if (password==ReadSudo()){
        while (sesion){
            do{
@@ -54,18 +55,18 @@ int main()
         int ced;
         int clav;
         int usuario;
-        int intentos=0;
         cout<<"Ingrese su cedula:"<<endl;
         do
         cin>>ced;
         while(!CheckCedRepetida(ced));
         usuario=Cedplace(ced);
         cout<<"Ingrese su clave:"<<endl;
-        do{
         cin>>clav;
-        intentos++;}
-        while (clav!=s[usuario].getClave() && intentos<3);
-        if (intentos==3){
+        while(clav!=s[usuario].getClave() && intentos<3){
+            cin>>clav;
+            intentos++;
+        }
+        if (intentos==3 && clav!=s[usuario].getClave()){
             cout<<"Entrada bloqueada"<<endl;
             return 0;}
         while (sesion){
