@@ -56,5 +56,5 @@ void Usuarios::GetMoney(){
     Saldo=Saldo-money-1000;
 }
 void Usuarios::MostrarRegistro(){
-    std::cout<<"Cedula: "<<Cedula<<", Clave: "<<Clave<<", Saldo: $"<<Saldo<<std::endl;
+    std::cout<<"Cedula: "<<Cedula<<", Saldo: $"<<Saldo<<std::endl;
 }

@@ -88,5 +88,5 @@ int main()
         }
     }
     writeRegister();
-   return 0;
+    return 0;
 }
